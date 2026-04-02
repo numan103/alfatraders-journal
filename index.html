@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Savaş Günlüğü — Trading Journal</title>
+<title>Alfa Traders — Savaş Günlüğü</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -23,35 +23,25 @@
   --radius:10px;
 }
 html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:14px;line-height:1.6;}
-a{color:var(--gold);text-decoration:none;}
-
-/* ── LAYOUT ── */
 .app{display:grid;grid-template-rows:52px 1fr;height:100vh;overflow:hidden;}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;border-bottom:1px solid var(--border);background:var(--surface);position:relative;z-index:10;}
-.nav-brand{font-family:var(--font-display);font-size:17px;color:var(--gold);letter-spacing:0.02em;display:flex;align-items:center;gap:8px;}
-.nav-brand::before{content:'⚔';font-size:14px;opacity:0.7;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;border-bottom:1px solid var(--border);background:var(--surface);z-index:10;}
+.nav-brand{font-family:var(--font-display);font-size:17px;color:var(--gold);display:flex;align-items:center;gap:8px;}
+.nav-brand span{font-size:11px;color:var(--text3);font-family:var(--font-mono);font-style:normal;}
 .nav-tabs{display:flex;gap:2px;}
-.nav-tab{padding:6px 14px;font-size:12px;font-family:var(--font-body);border:none;background:transparent;color:var(--text2);cursor:pointer;border-radius:6px;letter-spacing:0.03em;transition:all 0.15s;}
+.nav-tab{padding:6px 14px;font-size:12px;font-family:var(--font-body);border:none;background:transparent;color:var(--text2);cursor:pointer;border-radius:6px;transition:all 0.15s;}
 .nav-tab:hover{color:var(--text);background:var(--surface2);}
 .nav-tab.active{color:var(--gold);background:var(--surface3);}
 .nav-right{font-family:var(--font-mono);font-size:11px;color:var(--text3);}
-
-.main{overflow-y:auto;overflow-x:hidden;}
-.page{display:none;padding:1.5rem;max-width:900px;margin:0 auto;}
+.main{overflow-y:auto;}
+.page{display:none;padding:1.5rem;max-width:920px;margin:0 auto;}
 .page.active{display:block;animation:fadeIn 0.2s ease;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
-
-/* ── CARDS ── */
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.5rem;margin-bottom:1rem;}
 .card-title{font-size:10px;font-weight:500;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:6px;}
-.card-title::before{content:'';display:inline-block;width:3px;height:10px;background:var(--gold);border-radius:2px;flex-shrink:0;}
-
-/* ── GRID ── */
+.card-title::before{content:'';display:inline-block;width:3px;height:10px;background:var(--gold);border-radius:2px;}
 .entry-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
 .span2{grid-column:1/-1;}
 @media(max-width:640px){.entry-grid{grid-template-columns:1fr;}.span2{grid-column:1;}}
-
-/* ── FORM FIELDS ── */
 .field-label{font-size:11px;color:var(--text3);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:5px;}
 input,textarea,select{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:8px 10px;color:var(--text);font-family:var(--font-mono);font-size:13px;outline:none;transition:border 0.15s;}
 input:focus,textarea:focus,select:focus{border-color:rgba(201,168,76,0.4);}
@@ -60,37 +50,27 @@ select option{background:var(--surface2);}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .field-row-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;}
 @media(max-width:640px){.field-row,.field-row-4{grid-template-columns:1fr 1fr;}}
-
-/* ── RATING BUTTONS ── */
 .rating-row{display:flex;gap:5px;}
 .r-btn{flex:1;padding:6px 4px;font-size:12px;font-family:var(--font-mono);border:1px solid var(--border);border-radius:6px;background:transparent;color:var(--text2);cursor:pointer;transition:all 0.15s;text-align:center;}
-.r-btn:hover{border-color:var(--border2);}
 .r-btn.sel-1{background:rgba(217,95,95,0.15);border-color:var(--red);color:var(--red);}
 .r-btn.sel-2{background:rgba(212,148,91,0.15);border-color:var(--amber);color:var(--amber);}
 .r-btn.sel-3{background:rgba(201,168,76,0.12);border-color:var(--gold);color:var(--gold);}
 .r-btn.sel-4{background:rgba(91,143,212,0.15);border-color:var(--blue);color:var(--blue);}
 .r-btn.sel-5{background:rgba(93,184,122,0.15);border-color:var(--green);color:var(--green);}
-
-/* ── SETUP QUALITY ── */
 .sq-row{display:flex;gap:6px;}
 .sq-btn{flex:1;padding:8px 6px;text-align:center;border:1px solid var(--border);border-radius:7px;background:transparent;color:var(--text2);cursor:pointer;transition:all 0.15s;font-family:var(--font-mono);font-size:12px;}
 .sq-btn span{display:block;font-size:9px;opacity:0.5;margin-top:2px;}
-.sq-btn:hover{border-color:var(--border2);}
 .sq-A{background:rgba(93,184,122,0.15);border-color:var(--green);color:var(--green);}
 .sq-B{background:rgba(91,143,212,0.15);border-color:var(--blue);color:var(--blue);}
 .sq-C{background:rgba(212,148,91,0.15);border-color:var(--amber);color:var(--amber);}
 .sq-X{background:rgba(217,95,95,0.15);border-color:var(--red);color:var(--red);}
-
-/* ── EMOTION/TRIGGER GRID ── */
 .emo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;}
 .trig-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;}
 @media(max-width:640px){.emo-grid{grid-template-columns:repeat(3,1fr);}.trig-grid{grid-template-columns:1fr;}}
-.emo-btn,.trig-btn{padding:6px 8px;font-size:11px;text-align:center;border:1px solid var(--border);border-radius:7px;background:transparent;color:var(--text2);cursor:pointer;transition:all 0.15s;line-height:1.3;}
+.emo-btn,.trig-btn{padding:6px 8px;font-size:11px;text-align:center;border:1px solid var(--border);border-radius:7px;background:transparent;color:var(--text2);cursor:pointer;transition:all 0.15s;}
 .trig-btn{text-align:left;display:flex;align-items:center;gap:5px;padding:7px 10px;}
 .emo-btn.active{border-color:rgba(201,168,76,0.5);background:var(--gold-dim);color:var(--gold);}
 .trig-btn.active{border-color:rgba(217,95,95,0.5);background:var(--red-dim);color:var(--red);}
-
-/* ── CHECKLIST ── */
 .check-list{display:flex;flex-direction:column;gap:5px;}
 .check-item{display:flex;align-items:center;gap:8px;cursor:pointer;padding:6px 8px;border-radius:7px;border:1px solid transparent;transition:all 0.15s;}
 .check-item:hover{background:var(--surface2);}
@@ -100,17 +80,24 @@ select option{background:var(--surface2);}
 .check-text{font-size:12px;color:var(--text2);}
 .check-item.checked .check-text{color:var(--text);}
 
-/* ── SAVE BUTTON ── */
-.btn-save{width:100%;padding:12px;font-size:14px;font-family:var(--font-body);font-weight:500;border:none;border-radius:8px;background:var(--gold);color:#1a1400;cursor:pointer;transition:all 0.15s;letter-spacing:0.03em;}
-.btn-save:hover{background:var(--gold2);}
-.btn-save:active{transform:scale(0.99);}
+/* SCREENSHOT */
+.screenshots-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
+.screenshot-thumb{position:relative;border-radius:8px;overflow:hidden;border:1px solid var(--border);cursor:pointer;}
+.screenshot-thumb img{width:100%;display:block;max-height:180px;object-fit:contain;background:#0a0a0b;}
+.remove-thumb{position:absolute;top:5px;right:5px;width:22px;height:22px;border-radius:50%;background:rgba(0,0,0,0.75);border:1px solid var(--border2);color:var(--text2);font-size:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;line-height:1;transition:all 0.15s;}
+.remove-thumb:hover{color:var(--red);border-color:var(--red);}
+.add-ss-btn{border:1.5px dashed var(--border2);border-radius:8px;display:flex;align-items:center;justify-content:center;gap:8px;min-height:64px;cursor:pointer;color:var(--text3);font-size:12px;transition:all 0.15s;background:transparent;width:100%;padding:12px;font-family:var(--font-body);}
+.add-ss-btn:hover,.add-ss-btn.drag-over{border-color:rgba(201,168,76,0.4);color:var(--gold);background:rgba(201,168,76,0.03);}
+.ss-hint{font-size:11px;color:var(--text3);margin-bottom:8px;}
+.ss-hint kbd{background:var(--surface3);border:1px solid var(--border2);border-radius:4px;padding:1px 6px;font-family:var(--font-mono);font-size:10px;color:var(--text2);}
 
-/* ── LOG PAGE ── */
+.btn-save{width:100%;padding:12px;font-size:14px;font-family:var(--font-body);font-weight:500;border:none;border-radius:8px;background:var(--gold);color:#1a1400;cursor:pointer;transition:all 0.15s;}
+.btn-save:hover{background:var(--gold2);}
+
 .log-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:8px;}
 .log-title{font-family:var(--font-display);font-size:20px;font-weight:400;}
-.filter-row{display:flex;gap:5px;}
+.filter-row{display:flex;gap:5px;flex-wrap:wrap;}
 .filter-btn{padding:5px 12px;font-size:11px;font-family:var(--font-mono);border:1px solid var(--border);border-radius:20px;background:transparent;color:var(--text2);cursor:pointer;transition:all 0.15s;}
-.filter-btn:hover{color:var(--text);}
 .filter-btn.active{border-color:rgba(201,168,76,0.5);color:var(--gold);background:var(--gold-dim);}
 .trade-list{display:flex;flex-direction:column;gap:8px;}
 .trade-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;cursor:pointer;transition:border-color 0.15s;}
@@ -127,25 +114,20 @@ select option{background:var(--surface2);}
 .badge-setup-C{background:rgba(212,148,91,0.12);color:var(--amber);}
 .badge-setup-X{background:var(--red-dim);color:var(--red);}
 .tc-pnl{font-family:var(--font-mono);font-size:14px;font-weight:500;}
-.pos{color:var(--green);}
-.neg{color:var(--red);}
-.zero{color:var(--text2);}
-.tc-tags{display:flex;gap:4px;flex-wrap:wrap;}
+.pos{color:var(--green);}.neg{color:var(--red);}.zero{color:var(--text2);}
+.tc-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:5px;}
 .tag-trig{font-size:10px;padding:2px 7px;border-radius:4px;background:var(--red-dim);color:var(--red);font-family:var(--font-mono);}
 .tc-note{font-size:12px;color:var(--text2);margin-top:5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.tc-thumbs{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap;}
+.tc-thumb{width:68px;height:48px;border-radius:5px;object-fit:cover;border:1px solid var(--border);background:#0a0a0b;cursor:pointer;}
 .empty{text-align:center;padding:4rem 1rem;color:var(--text3);}
-.empty-icon{font-size:36px;margin-bottom:12px;opacity:0.3;}
-.empty-sub{font-size:13px;}
 
-/* ── STATS PAGE ── */
 .stats-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.25rem;}
 @media(max-width:640px){.stats-metrics{grid-template-columns:repeat(2,1fr);}}
 .metric{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;}
 .metric-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:5px;}
 .metric-val{font-family:var(--font-mono);font-size:22px;font-weight:500;}
-.metric-val.pos{color:var(--green);}
-.metric-val.neg{color:var(--red);}
-.metric-val.gold{color:var(--gold);}
+.metric-val.pos{color:var(--green);}.metric-val.neg{color:var(--red);}.metric-val.gold{color:var(--gold);}
 .analytics-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
 @media(max-width:640px){.analytics-grid{grid-template-columns:1fr;}}
 .bar-row{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
@@ -158,40 +140,38 @@ select option{background:var(--surface2);}
 .trig-name{font-size:12px;color:var(--text2);}
 .trig-cnt{font-family:var(--font-mono);font-size:12px;color:var(--red);}
 
-/* ── MODAL ── */
 .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:100;align-items:center;justify-content:center;padding:1rem;}
 .modal-bg.open{display:flex;}
-.modal{background:var(--surface);border:1px solid var(--border);border-radius:12px;max-width:540px;width:100%;max-height:85vh;overflow-y:auto;}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:12px;max-width:620px;width:100%;max-height:88vh;overflow-y:auto;}
 .modal-head{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:1px solid var(--border);}
 .modal-title{font-family:var(--font-display);font-size:15px;font-weight:400;}
 .modal-x{background:none;border:none;color:var(--text2);font-size:18px;cursor:pointer;padding:2px 8px;border-radius:4px;line-height:1;}
 .modal-x:hover{color:var(--text);}
 .modal-body{padding:1.25rem;}
 .modal-row{margin-bottom:12px;}
-.modal-key{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:3px;}
+.modal-key{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;}
 .modal-val{font-size:13px;color:var(--text);line-height:1.6;}
-.modal-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px;}
+.modal-grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px;}
+.modal-ss-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;}
+.modal-ss-img{width:100%;border-radius:7px;cursor:zoom-in;border:1px solid var(--border);background:#0a0a0b;display:block;max-height:200px;object-fit:contain;}
 .btn-del{width:100%;margin-top:1rem;padding:8px;font-size:12px;font-family:var(--font-body);border:1px solid rgba(217,95,95,0.3);border-radius:7px;background:transparent;color:var(--red);cursor:pointer;transition:all 0.15s;}
 .btn-del:hover{background:var(--red-dim);}
 
-/* ── TOAST ── */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:300;align-items:center;justify-content:center;cursor:zoom-out;}
+.lightbox.open{display:flex;}
+.lightbox img{max-width:93vw;max-height:91vh;object-fit:contain;border-radius:6px;}
+
 #toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(16px);background:var(--surface);border:1px solid rgba(201,168,76,0.4);border-radius:8px;padding:10px 20px;font-size:13px;color:var(--gold);opacity:0;transition:all 0.25s;pointer-events:none;z-index:200;white-space:nowrap;}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
-/* ── PAGE HEADER ── */
 .page-header{margin-bottom:1.5rem;}
-.page-header h1{font-family:var(--font-display);font-size:24px;font-weight:400;color:var(--text);}
+.page-header h1{font-family:var(--font-display);font-size:24px;font-weight:400;}
 .page-header p{font-size:13px;color:var(--text3);margin-top:3px;}
-
-/* ── SEPARATOR ── */
-.sep{height:1px;background:var(--border);margin:1rem 0;}
 </style>
 </head>
 <body>
 <div class="app">
-
 <nav class="nav">
-  <span class="nav-brand">Savaş Günlüğü</span>
+  <div class="nav-brand">⚔ Alfa Traders <span>/ Savaş Günlüğü</span></div>
   <div class="nav-tabs">
     <button class="nav-tab active" onclick="go('entry')">Yeni Kayıt</button>
     <button class="nav-tab" onclick="go('log')">Kayıtlar</button>
@@ -199,35 +179,29 @@ select option{background:var(--surface2);}
   </div>
   <span class="nav-right" id="nav-count">0 trade</span>
 </nav>
-
 <main class="main">
 
-<!-- ── ENTRY ── -->
+<!-- ENTRY -->
 <div class="page active" id="page-entry">
   <div class="page-header">
     <h1>Trade Kaydı</h1>
     <p>Sun Tzu: "Kendini bil, düşmanı bil — yüz savaşta yüz zafer."</p>
   </div>
-
   <div class="entry-grid">
 
-    <!-- Temel Bilgiler -->
     <div class="card span2">
       <div class="card-title">Temel Bilgiler</div>
       <div class="field-row-4">
         <div><label class="field-label">Tarih</label><input type="date" id="f-date"></div>
         <div><label class="field-label">Parite</label><input type="text" id="f-pair" placeholder="BTC/USDT"></div>
-        <div><label class="field-label">Yön</label>
-          <select id="f-dir"><option value="">Seç</option><option value="LONG">LONG</option><option value="SHORT">SHORT</option></select>
-        </div>
+        <div><label class="field-label">Yön</label><select id="f-dir"><option value="">Seç</option><option>LONG</option><option>SHORT</option></select></div>
         <div><label class="field-label">PnL (%)</label><input type="number" id="f-pnl" placeholder="±2.5" step="0.1"></div>
       </div>
     </div>
 
-    <!-- Setup & R/R -->
     <div class="card">
       <div class="card-title">Setup Kalitesi</div>
-      <div class="sq-row" id="sq-row">
+      <div class="sq-row">
         <button class="sq-btn" id="sq-A" onclick="selSetup('A')">A+<span>En İyi</span></button>
         <button class="sq-btn" id="sq-B" onclick="selSetup('B')">B<span>Orta</span></button>
         <button class="sq-btn" id="sq-C" onclick="selSetup('C')">C<span>Zayıf</span></button>
@@ -236,36 +210,43 @@ select option{background:var(--surface2);}
       <div style="margin-top:10px;"><label class="field-label">R/R Oranı</label><input type="text" id="f-rr" placeholder="1:2.5"></div>
     </div>
 
-    <!-- Mental -->
     <div class="card">
       <div class="card-title">Mental Durum</div>
-      <label class="field-label" style="margin-bottom:6px;">Giriş öncesi (1=kötü → 5=ideal)</label>
+      <label class="field-label">Giriş öncesi (1=kötü → 5=ideal)</label>
       <div class="rating-row" id="pre-rating"></div>
-      <div style="margin-top:10px;">
-        <label class="field-label">Trade sonrası</label>
-        <div class="rating-row" id="post-rating"></div>
-      </div>
+      <div style="margin-top:10px;"><label class="field-label">Trade sonrası</label>
+      <div class="rating-row" id="post-rating"></div></div>
     </div>
 
-    <!-- Duygusal Durum -->
+    <!-- SCREENSHOTS -->
+    <div class="card span2">
+      <div class="card-title">Chart Screenshot</div>
+      <div class="ss-hint">
+        <kbd>Ctrl+V</kbd> ile yapıştır &nbsp;·&nbsp; Sürükle bırak &nbsp;·&nbsp; Tıkla seç &nbsp;·&nbsp; Birden fazla ekleyebilirsin
+      </div>
+      <div class="screenshots-grid" id="ss-grid"></div>
+      <button class="add-ss-btn" id="add-ss-btn" onclick="document.getElementById('file-input').click()">
+        <span style="font-size:20px;opacity:0.35;">＋</span>
+        Screenshot ekle
+      </button>
+      <input type="file" id="file-input" accept="image/*" multiple style="display:none" onchange="handleFiles(event)">
+    </div>
+
     <div class="card span2">
       <div class="card-title">Duygusal Durum — Giriş Anı</div>
       <div class="emo-grid" id="emo-grid"></div>
     </div>
 
-    <!-- Psikolojik Tetikleyiciler -->
     <div class="card span2">
-      <div class="card-title">Psikolojik Tetikleyiciler — Aktif Olan?</div>
+      <div class="card-title">Psikolojik Tetikleyiciler</div>
       <div class="trig-grid" id="trig-grid"></div>
     </div>
 
-    <!-- Kural Kontrolü -->
     <div class="card span2">
       <div class="card-title">Kural Kontrol Listesi</div>
       <div class="check-list" id="check-list"></div>
     </div>
 
-    <!-- Notlar -->
     <div class="card span2">
       <div class="card-title">Trade Notları</div>
       <div class="field-row">
@@ -279,7 +260,7 @@ select option{background:var(--surface2);}
   </div>
 </div>
 
-<!-- ── LOG ── -->
+<!-- LOG -->
 <div class="page" id="page-log">
   <div class="log-toolbar">
     <span class="log-title">Trade Kaydı</span>
@@ -287,20 +268,21 @@ select option{background:var(--surface2);}
       <button class="filter-btn active" onclick="setFilter('all',this)">Tümü</button>
       <button class="filter-btn" onclick="setFilter('win',this)">Kazanç</button>
       <button class="filter-btn" onclick="setFilter('loss',this)">Kayıp</button>
-      <button class="filter-btn" onclick="setFilter('trig',this)">Tetikleyici Var</button>
+      <button class="filter-btn" onclick="setFilter('trig',this)">Tetikleyici</button>
+      <button class="filter-btn" onclick="setFilter('img',this)">📷 Görsel Var</button>
     </div>
   </div>
   <div class="trade-list" id="trade-list"></div>
 </div>
 
-<!-- ── STATS ── -->
+<!-- STATS -->
 <div class="page" id="page-stats">
   <div class="page-header"><h1>Analitik</h1><p>Sayılar yalan söylemez.</p></div>
   <div class="stats-metrics" id="stats-metrics"></div>
   <div class="analytics-grid">
     <div class="card"><div class="card-title">Setup Kalitesine Göre Win Rate</div><div id="setup-chart"></div></div>
     <div class="card"><div class="card-title">En Aktif Psikolojik Tuzaklar</div><div id="trig-chart"></div></div>
-    <div class="card"><div class="card-title">Duygusal Durum vs Ortalama PnL</div><div id="emo-chart"></div></div>
+    <div class="card"><div class="card-title">Duygusal Durum vs Ort. PnL</div><div id="emo-chart"></div></div>
     <div class="card"><div class="card-title">Kural Uyum Oranı</div><div id="rule-chart"></div></div>
   </div>
 </div>
@@ -308,19 +290,16 @@ select option{background:var(--surface2);}
 </main>
 </div>
 
-<!-- MODAL -->
-<div class="modal-bg" id="modal-bg" onclick="bgClick(event)">
-  <div class="modal" id="modal-inner"></div>
-</div>
-
+<div class="modal-bg" id="modal-bg" onclick="bgClick(event)"><div class="modal" id="modal-inner"></div></div>
+<div class="lightbox" id="lightbox" onclick="closeLB()"><img id="lb-img" src="" alt=""></div>
 <div id="toast"></div>
 
 <script>
-// ─── DATA ───
-const KEY = 'savassgunlugu_v1';
-let db = JSON.parse(localStorage.getItem(KEY)||'[]');
-let setupSel='', preSel=0, postSel=0;
-let emoSel=new Set(), trigSel=new Set(), checkSel=new Set();
+const KEY='alfatraders_v2';
+let db=JSON.parse(localStorage.getItem(KEY)||'[]');
+let setupSel='',preSel=0,postSel=0;
+let emoSel=new Set(),trigSel=new Set(),checkSel=new Set();
+let screenshots=[];
 let filterMode='all';
 
 const EMOTIONS=[
@@ -334,7 +313,7 @@ const TRIGGERS=[
   {id:'revenge',i:'🔁',l:'İntikam — Geri alma'},
   {id:'thistime',i:'🎲',l:'"Bu sefer farklı"'},
   {id:'winstreak',i:'🏆',l:'Kazanma serisi büyüsü'},
-  {id:'lossstreak',i:'📉',l:'Kayıp serisi — Geri alacağım'},
+  {id:'lossstreak',i:'📉',l:'Kayıp — Geri alacağım'},
   {id:'oversize',i:'📈',l:'Fazla büyük pozisyon'},
   {id:'nostop',i:'🚫',l:'Stop koymadan giriş'},
   {id:'lateentry',i:'⏰',l:'Geç giriş — Kaçtı modu'},
@@ -351,192 +330,187 @@ const RULES=[
   'FOMO hissiyle girilmedi',
 ];
 
-// ─── INIT ───
 function init(){
-  document.getElementById('f-date').value = new Date().toISOString().split('T')[0];
-  document.getElementById('f-pair').value = 'BTC/USDT';
-
-  // Rating buttons
-  ['pre-rating','post-rating'].forEach((id,isPost)=>{
+  document.getElementById('f-date').value=new Date().toISOString().split('T')[0];
+  document.getElementById('f-pair').value='BTC/USDT';
+  ['pre-rating','post-rating'].forEach((id,ip)=>{
     const el=document.getElementById(id);
     [1,2,3,4,5].forEach(n=>{
-      const b=document.createElement('button');
-      b.className='r-btn';b.textContent=n;
-      b.onclick=()=>{ if(isPost)postSel=n;else preSel=n; updateRatings(); };
-      el.appendChild(b);
+      const b=document.createElement('button');b.className='r-btn';b.textContent=n;
+      b.onclick=()=>{if(ip)postSel=n;else preSel=n;upR();};el.appendChild(b);
     });
   });
-
-  // Emotion grid
   const eg=document.getElementById('emo-grid');
   EMOTIONS.forEach(e=>{
-    const b=document.createElement('button');
-    b.className='emo-btn';b.textContent=e.l;b.dataset.id=e.id;
-    b.onclick=()=>{ emoSel.has(e.id)?emoSel.delete(e.id):emoSel.add(e.id); updateEmo(); };
-    eg.appendChild(b);
+    const b=document.createElement('button');b.className='emo-btn';b.textContent=e.l;b.dataset.id=e.id;
+    b.onclick=()=>{emoSel.has(e.id)?emoSel.delete(e.id):emoSel.add(e.id);upE();};eg.appendChild(b);
   });
-
-  // Trigger grid
   const tg=document.getElementById('trig-grid');
   TRIGGERS.forEach(t=>{
-    const b=document.createElement('button');
-    b.className='trig-btn';b.dataset.id=t.id;
+    const b=document.createElement('button');b.className='trig-btn';b.dataset.id=t.id;
     b.innerHTML=`<span>${t.i}</span><span>${t.l}</span>`;
-    b.onclick=()=>{ trigSel.has(t.id)?trigSel.delete(t.id):trigSel.add(t.id); updateTrig(); };
-    tg.appendChild(b);
+    b.onclick=()=>{trigSel.has(t.id)?trigSel.delete(t.id):trigSel.add(t.id);upT();};tg.appendChild(b);
   });
-
-  // Checklist
   const cl=document.getElementById('check-list');
   RULES.forEach((r,i)=>{
-    const d=document.createElement('div');
-    d.className='check-item';d.dataset.i=i;
+    const d=document.createElement('div');d.className='check-item';d.dataset.i=i;
     d.innerHTML=`<div class="check-box">✓</div><span class="check-text">${r}</span>`;
-    d.onclick=()=>{ checkSel.has(i)?checkSel.delete(i):checkSel.add(i); updateChecks(); };
-    cl.appendChild(d);
+    d.onclick=()=>{checkSel.has(i)?checkSel.delete(i):checkSel.add(i);upC();};cl.appendChild(d);
   });
-
-  updateCount();
+  document.addEventListener('paste',onPaste);
+  const btn=document.getElementById('add-ss-btn');
+  btn.addEventListener('dragover',e=>{e.preventDefault();btn.classList.add('drag-over');});
+  btn.addEventListener('dragleave',()=>btn.classList.remove('drag-over'));
+  btn.addEventListener('drop',e=>{
+    e.preventDefault();btn.classList.remove('drag-over');
+    [...e.dataTransfer.files].filter(f=>f.type.startsWith('image/')).forEach(readImg);
+  });
+  renderSS();updateCount();
 }
 
-function updateRatings(){
+function onPaste(e){
+  if(!document.getElementById('page-entry').classList.contains('active'))return;
+  const items=e.clipboardData?.items;if(!items)return;
+  let found=false;
+  for(const item of items){
+    if(item.type.startsWith('image/')){readImg(item.getAsFile());found=true;}
+  }
+  if(found)toast('Screenshot yapıştırıldı ✓');
+}
+function handleFiles(e){[...e.target.files].forEach(readImg);e.target.value='';}
+function readImg(file){
+  const r=new FileReader();
+  r.onload=ev=>{screenshots.push(ev.target.result);renderSS();};
+  r.readAsDataURL(file);
+}
+function removeSS(i){screenshots.splice(i,1);renderSS();}
+function renderSS(){
+  document.getElementById('ss-grid').innerHTML=screenshots.map((src,i)=>`
+    <div class="screenshot-thumb">
+      <img src="${src}" onclick="openLB('${src}')" title="Büyütmek için tıkla">
+      <div class="remove-thumb" onclick="event.stopPropagation();removeSS(${i})">×</div>
+    </div>`).join('');
+}
+function openLB(src){document.getElementById('lb-img').src=src;document.getElementById('lightbox').classList.add('open');}
+function closeLB(){document.getElementById('lightbox').classList.remove('open');}
+
+function upR(){
   document.querySelectorAll('#pre-rating .r-btn').forEach((b,i)=>{b.className='r-btn'+(preSel===i+1?` sel-${i+1}`:'');});
   document.querySelectorAll('#post-rating .r-btn').forEach((b,i)=>{b.className='r-btn'+(postSel===i+1?` sel-${i+1}`:'');});
 }
-function updateEmo(){
-  document.querySelectorAll('#emo-grid .emo-btn').forEach(b=>b.classList.toggle('active',emoSel.has(b.dataset.id)));
-}
-function updateTrig(){
-  document.querySelectorAll('#trig-grid .trig-btn').forEach(b=>b.classList.toggle('active',trigSel.has(b.dataset.id)));
-}
-function updateChecks(){
-  document.querySelectorAll('#check-list .check-item').forEach(d=>d.classList.toggle('checked',checkSel.has(parseInt(d.dataset.i))));
-}
+function upE(){document.querySelectorAll('#emo-grid .emo-btn').forEach(b=>b.classList.toggle('active',emoSel.has(b.dataset.id)));}
+function upT(){document.querySelectorAll('#trig-grid .trig-btn').forEach(b=>b.classList.toggle('active',trigSel.has(b.dataset.id)));}
+function upC(){document.querySelectorAll('#check-list .check-item').forEach(d=>d.classList.toggle('checked',checkSel.has(parseInt(d.dataset.i))));}
 function selSetup(s){
   setupSel=s;
-  ['A','B','C','X'].forEach(x=>{
-    const b=document.getElementById('sq-'+x);
-    b.className='sq-btn'+(s===x?` sq-${x}`:'');
-  });
+  ['A','B','C','X'].forEach(x=>document.getElementById('sq-'+x).className='sq-btn'+(s===x?` sq-${x}`:''));
 }
-function updateCount(){
-  document.getElementById('nav-count').textContent=db.length+' trade';
-}
+function updateCount(){document.getElementById('nav-count').textContent=db.length+' trade';}
 
-// ─── SAVE ───
 function saveEntry(){
   const date=document.getElementById('f-date').value;
-  const pair=document.getElementById('f-pair').value.trim()||'BTC/USDT';
   const dir=document.getElementById('f-dir').value;
-  const pnl=parseFloat(document.getElementById('f-pnl').value)||0;
-  const rr=document.getElementById('f-rr').value.trim();
-  const note=document.getElementById('f-setup').value.trim();
-  const lesson=document.getElementById('f-lesson').value.trim();
-  const next=document.getElementById('f-next').value.trim();
   if(!date||!dir){toast('Tarih ve yön zorunlu');return;}
   const e={
-    id:Date.now(),date,pair,dir,pnl,rr,setup:setupSel,
-    pre:preSel,post:postSel,
+    id:Date.now(),date,
+    pair:document.getElementById('f-pair').value.trim()||'BTC/USDT',
+    dir,pnl:parseFloat(document.getElementById('f-pnl').value)||0,
+    rr:document.getElementById('f-rr').value.trim(),
+    setup:setupSel,pre:preSel,post:postSel,
     emotions:[...emoSel],triggers:[...trigSel],rules:[...checkSel],
-    note,lesson,next
+    note:document.getElementById('f-setup').value.trim(),
+    lesson:document.getElementById('f-lesson').value.trim(),
+    next:document.getElementById('f-next').value.trim(),
+    screenshots:[...screenshots]
   };
-  db.unshift(e);
-  localStorage.setItem(KEY,JSON.stringify(db));
-  toast('Kayıt tamamlandı ✓');
-  resetForm();
-  updateCount();
+  db.unshift(e);localStorage.setItem(KEY,JSON.stringify(db));
+  toast('Kayıt tamamlandı ✓');resetForm();updateCount();
 }
 function resetForm(){
-  document.getElementById('f-pnl').value='';
+  ['f-pnl','f-rr','f-setup','f-lesson','f-next'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('f-dir').value='';
-  document.getElementById('f-rr').value='';
-  document.getElementById('f-setup').value='';
-  document.getElementById('f-lesson').value='';
-  document.getElementById('f-next').value='';
   setupSel='';preSel=0;postSel=0;
-  emoSel.clear();trigSel.clear();checkSel.clear();
+  emoSel.clear();trigSel.clear();checkSel.clear();screenshots=[];
   ['A','B','C','X'].forEach(x=>document.getElementById('sq-'+x).className='sq-btn');
-  updateRatings();updateEmo();updateTrig();updateChecks();
+  upR();upE();upT();upC();renderSS();
 }
 
-// ─── NAVIGATION ───
 function go(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
-  const tabs={entry:0,log:1,stats:2};
-  document.querySelectorAll('.nav-tab')[tabs[id]].classList.add('active');
+  document.querySelectorAll('.nav-tab')[{entry:0,log:1,stats:2}[id]].classList.add('active');
   if(id==='log')renderLog();
   if(id==='stats')renderStats();
 }
-
-// ─── LOG ───
 function setFilter(f,el){
   filterMode=f;
   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-  renderLog();
+  el.classList.add('active');renderLog();
 }
 function renderLog(){
   let rows=db;
   if(filterMode==='win')rows=db.filter(e=>e.pnl>0);
   else if(filterMode==='loss')rows=db.filter(e=>e.pnl<0);
   else if(filterMode==='trig')rows=db.filter(e=>e.triggers&&e.triggers.length);
+  else if(filterMode==='img')rows=db.filter(e=>e.screenshots&&e.screenshots.length);
   const el=document.getElementById('trade-list');
-  if(!rows.length){
-    el.innerHTML=`<div class="empty"><div class="empty-icon">◎</div><div class="empty-sub">Henüz kayıt yok</div></div>`;
-    return;
-  }
+  if(!rows.length){el.innerHTML=`<div class="empty"><div style="font-size:32px;opacity:0.3;margin-bottom:8px;">◎</div><div style="font-size:13px;">Kayıt yok</div></div>`;return;}
   el.innerHTML=rows.map(e=>{
-    const pClass=e.pnl>0?'pos':e.pnl<0?'neg':'zero';
-    const pStr=e.pnl>0?'+'+e.pnl.toFixed(2)+'%':e.pnl.toFixed(2)+'%';
-    const trigHtml=(e.triggers||[]).slice(0,3).map(id=>{
+    const pc=e.pnl>0?'pos':e.pnl<0?'neg':'zero';
+    const ps=e.pnl>0?'+'+e.pnl.toFixed(2)+'%':e.pnl.toFixed(2)+'%';
+    const trigs=(e.triggers||[]).slice(0,2).map(id=>{
       const t=TRIGGERS.find(x=>x.id===id);
       return `<span class="tag-trig">${t?t.i+' '+t.l.split('—')[0].trim():id}</span>`;
     }).join('');
-    const sClass=e.setup?`badge-setup-${e.setup}`:'';
+    const thumbs=(e.screenshots||[]).slice(0,4).map(src=>
+      `<img class="tc-thumb" src="${src}" onclick="event.stopPropagation();openLB('${src}')">`
+    ).join('');
     return `<div class="trade-card" onclick="openDetail(${e.id})">
       <div class="tc-top">
         <div class="tc-meta">
           <span class="tc-date">${e.date}</span>
           <span class="tc-pair">${e.pair}</span>
           <span class="badge badge-${(e.dir||'').toLowerCase()}">${e.dir||'—'}</span>
-          ${e.setup?`<span class="badge ${sClass}">${e.setup}</span>`:''}
+          ${e.setup?`<span class="badge badge-setup-${e.setup}">${e.setup}</span>`:''}
+          ${(e.screenshots||[]).length?`<span style="font-size:11px;color:var(--text3);">📷 ${e.screenshots.length}</span>`:''}
         </div>
-        <span class="tc-pnl ${pClass}">${pStr}</span>
+        <span class="tc-pnl ${pc}">${ps}</span>
       </div>
-      ${trigHtml?`<div class="tc-tags">${trigHtml}</div>`:''}
+      ${trigs?`<div class="tc-tags">${trigs}</div>`:''}
       ${e.note?`<div class="tc-note">${e.note}</div>`:''}
+      ${thumbs?`<div class="tc-thumbs">${thumbs}</div>`:''}
     </div>`;
   }).join('');
 }
 
-// ─── DETAIL MODAL ───
 function openDetail(id){
   const e=db.find(x=>x.id===id);if(!e)return;
-  const pClass=e.pnl>0?'pos':e.pnl<0?'neg':'zero';
-  const pStr=e.pnl>0?'+'+e.pnl.toFixed(2)+'%':e.pnl.toFixed(2)+'%';
-  const trigNames=(e.triggers||[]).map(id=>{const t=TRIGGERS.find(x=>x.id===id);return t?t.i+' '+t.l:'?';}).join(', ')||'—';
-  const emoNames=(e.emotions||[]).map(id=>{const em=EMOTIONS.find(x=>x.id===id);return em?em.l:'?';}).join(', ')||'—';
-  const ruleScore=(e.rules||[]).length+'/'+RULES.length;
+  const pc=e.pnl>0?'pos':e.pnl<0?'neg':'zero';
+  const ps=e.pnl>0?'+'+e.pnl.toFixed(2)+'%':e.pnl.toFixed(2)+'%';
+  const tn=(e.triggers||[]).map(id=>{const t=TRIGGERS.find(x=>x.id===id);return t?t.i+' '+t.l:'?';}).join(', ')||'—';
+  const en=(e.emotions||[]).map(id=>{const em=EMOTIONS.find(x=>x.id===id);return em?em.l:'?';}).join(', ')||'—';
+  const ssHtml=(e.screenshots||[]).length?`<div class="modal-row"><div class="modal-key">Chart Screenshots (${e.screenshots.length})</div>
+    <div class="modal-ss-grid">${e.screenshots.map(src=>`<img class="modal-ss-img" src="${src}" onclick="openLB('${src}')">`).join('')}</div></div>`:'';
   document.getElementById('modal-inner').innerHTML=`
     <div class="modal-head">
       <span class="modal-title">${e.pair} ${e.dir} — ${e.date}</span>
       <button class="modal-x" onclick="closeModal()">×</button>
     </div>
     <div class="modal-body">
-      <div class="modal-grid">
-        <div><div class="modal-key">PnL</div><div class="modal-val ${pClass}" style="font-family:var(--font-mono);font-size:16px;">${pStr}</div></div>
+      <div class="modal-grid3">
+        <div><div class="modal-key">PnL</div><div class="modal-val ${pc}" style="font-family:var(--font-mono);font-size:16px;">${ps}</div></div>
         <div><div class="modal-key">Setup</div><div class="modal-val">${e.setup||'—'}</div></div>
         <div><div class="modal-key">R/R</div><div class="modal-val" style="font-family:var(--font-mono);">${e.rr||'—'}</div></div>
       </div>
-      <div class="modal-grid">
+      <div class="modal-grid3">
         <div><div class="modal-key">Mental Önce→Sonra</div><div class="modal-val" style="font-family:var(--font-mono);">${e.pre||'—'} → ${e.post||'—'}</div></div>
-        <div><div class="modal-key">Kural Uyumu</div><div class="modal-val">${ruleScore}</div></div>
+        <div><div class="modal-key">Kural Uyumu</div><div class="modal-val">${(e.rules||[]).length}/${RULES.length}</div></div>
         <div></div>
       </div>
-      <div class="modal-row"><div class="modal-key">Duygusal Durum</div><div class="modal-val">${emoNames}</div></div>
-      <div class="modal-row"><div class="modal-key">Aktif Tetikleyiciler</div><div class="modal-val" style="color:var(--red);">${trigNames}</div></div>
+      ${ssHtml}
+      <div class="modal-row"><div class="modal-key">Duygusal Durum</div><div class="modal-val">${en}</div></div>
+      <div class="modal-row"><div class="modal-key">Tetikleyiciler</div><div class="modal-val" style="color:var(--red);">${tn}</div></div>
       ${e.note?`<div class="modal-row"><div class="modal-key">Setup Notu</div><div class="modal-val">${e.note}</div></div>`:''}
       ${e.lesson?`<div class="modal-row"><div class="modal-key">Öğrenilen Ders</div><div class="modal-val">${e.lesson}</div></div>`:''}
       ${e.next?`<div class="modal-row"><div class="modal-key">Sonraki Adım</div><div class="modal-val">${e.next}</div></div>`:''}
@@ -547,31 +521,24 @@ function openDetail(id){
 function bgClick(ev){if(ev.target===document.getElementById('modal-bg'))closeModal();}
 function closeModal(){document.getElementById('modal-bg').classList.remove('open');}
 function delEntry(id){
-  db=db.filter(e=>e.id!==id);
-  localStorage.setItem(KEY,JSON.stringify(db));
+  db=db.filter(e=>e.id!==id);localStorage.setItem(KEY,JSON.stringify(db));
   closeModal();renderLog();updateCount();toast('Kayıt silindi');
 }
 
-// ─── STATS ───
 function renderStats(){
   if(!db.length){
-    document.getElementById('stats-metrics').innerHTML=`<div style="grid-column:1/-1;text-align:center;color:var(--text3);padding:2rem;">Analitik için kayıt gerekli</div>`;
-    ['setup-chart','trig-chart','emo-chart','rule-chart'].forEach(id=>document.getElementById(id).innerHTML='');
-    return;
+    document.getElementById('stats-metrics').innerHTML=`<div style="grid-column:1/-1;text-align:center;color:var(--text3);padding:2rem;">Kayıt yok</div>`;
+    ['setup-chart','trig-chart','emo-chart','rule-chart'].forEach(id=>document.getElementById(id).innerHTML='');return;
   }
-  const total=db.length;
-  const wins=db.filter(e=>e.pnl>0).length;
+  const total=db.length,wins=db.filter(e=>e.pnl>0).length;
   const wr=Math.round(wins/total*100);
-  const netPnl=db.reduce((s,e)=>s+e.pnl,0);
-  const trigPct=Math.round(db.filter(e=>e.triggers&&e.triggers.length).length/total*100);
+  const net=db.reduce((s,e)=>s+e.pnl,0);
+  const tp=Math.round(db.filter(e=>e.triggers&&e.triggers.length).length/total*100);
   document.getElementById('stats-metrics').innerHTML=`
     <div class="metric"><div class="metric-label">Toplam Trade</div><div class="metric-val gold">${total}</div></div>
     <div class="metric"><div class="metric-label">Kazanma Oranı</div><div class="metric-val ${wr>=50?'pos':'neg'}">${wr}%</div></div>
-    <div class="metric"><div class="metric-label">Net PnL</div><div class="metric-val ${netPnl>=0?'pos':'neg'}">${netPnl>=0?'+':''}${netPnl.toFixed(1)}%</div></div>
-    <div class="metric"><div class="metric-label">Tetikleyici Oran</div><div class="metric-val ${trigPct>30?'neg':'pos'}">${trigPct}%</div></div>
-  `;
-
-  // Setup bars
+    <div class="metric"><div class="metric-label">Net PnL</div><div class="metric-val ${net>=0?'pos':'neg'}">${net>=0?'+':''}${net.toFixed(1)}%</div></div>
+    <div class="metric"><div class="metric-label">Tetikleyici Oran</div><div class="metric-val ${tp>30?'neg':'pos'}">${tp}%</div></div>`;
   const sm={};
   db.forEach(e=>{if(!e.setup)return;if(!sm[e.setup])sm[e.setup]={w:0,t:0};sm[e.setup].t++;if(e.pnl>0)sm[e.setup].w++;});
   const cols={'A+':'#5db87a','A':'#5db87a','B':'#5b8fd4','C':'#d4945b','X':'#d95f5f'};
@@ -579,44 +546,30 @@ function renderStats(){
     const p=Math.round(v.w/v.t*100);
     return `<div class="bar-row"><span class="bar-label">${k} (${v.t}x)</span><div class="bar-track"><div class="bar-fill" style="width:${p}%;background:${cols[k]||'#888'};"></div></div><span class="bar-val">${p}%</span></div>`;
   }).join('')||'<div style="color:var(--text3);font-size:12px;">Veri yok</div>';
-
-  // Trigger chart
   const tm={};
   db.forEach(e=>(e.triggers||[]).forEach(t=>{tm[t]=(tm[t]||0)+1;}));
-  const ts=Object.entries(tm).sort((a,b)=>b[1]-a[1]).slice(0,7);
-  document.getElementById('trig-chart').innerHTML=ts.map(([id,cnt])=>{
+  document.getElementById('trig-chart').innerHTML=Object.entries(tm).sort((a,b)=>b[1]-a[1]).slice(0,7).map(([id,cnt])=>{
     const t=TRIGGERS.find(x=>x.id===id);
     return `<div class="trig-row"><span class="trig-name">${t?t.i+' '+t.l.split('—')[0].trim():id}</span><span class="trig-cnt">${cnt}x</span></div>`;
-  }).join('')||'<div style="color:var(--text3);font-size:12px;padding:4px 0;">Tetikleyici yok — iyi!</div>';
-
-  // Emotion chart
+  }).join('')||'<div style="color:var(--text3);font-size:12px;">Tetikleyici yok</div>';
   const em={};
-  db.forEach(e=>(e.emotions||[]).forEach(id=>{if(!em[id])em[id]={t:0,pnl:0};em[id].t++;em[id].pnl+=e.pnl;}));
+  db.forEach(e=>(e.emotions||[]).forEach(id=>{if(!em[id])em[id]={t:0,p:0};em[id].t++;em[id].p+=e.pnl;}));
   const es=Object.entries(em).sort((a,b)=>b[1].t-a[1].t).slice(0,6);
-  const maxE=es.length?es[0][1].t:1;
+  const mx=es.length?es[0][1].t:1;
   document.getElementById('emo-chart').innerHTML=es.map(([id,v])=>{
-    const avg=v.pnl/v.t;const c=avg>=0?'#5db87a':'#d95f5f';
+    const a=v.p/v.t;const c=a>=0?'#5db87a':'#d95f5f';
     const emo=EMOTIONS.find(x=>x.id===id);
-    return `<div class="bar-row"><span class="bar-label">${emo?emo.l:id} (${avg>=0?'+':''}${avg.toFixed(1)}%)</span><div class="bar-track"><div class="bar-fill" style="width:${Math.round(v.t/maxE*100)}%;background:${c};"></div></div><span class="bar-val">${v.t}x</span></div>`;
+    return `<div class="bar-row"><span class="bar-label">${emo?emo.l:id} (${a>=0?'+':''}${a.toFixed(1)}%)</span><div class="bar-track"><div class="bar-fill" style="width:${Math.round(v.t/mx*100)}%;background:${c};"></div></div><span class="bar-val">${v.t}x</span></div>`;
   }).join('')||'<div style="color:var(--text3);font-size:12px;">Veri yok</div>';
-
-  // Rule chart
   const rh=new Array(RULES.length).fill(0);
   db.forEach(e=>(e.rules||[]).forEach(i=>rh[i]++));
   document.getElementById('rule-chart').innerHTML=RULES.map((r,i)=>{
-    const p=Math.round(rh[i]/total*100);
-    const c=p>=80?'#5db87a':p>=50?'#d4945b':'#d95f5f';
+    const p=Math.round(rh[i]/total*100);const c=p>=80?'#5db87a':p>=50?'#d4945b':'#d95f5f';
     return `<div class="bar-row"><span class="bar-label" title="${r}">${r.length>22?r.slice(0,22)+'…':r}</span><div class="bar-track"><div class="bar-fill" style="width:${p}%;background:${c};"></div></div><span class="bar-val">${p}%</span></div>`;
   }).join('');
 }
 
-// ─── TOAST ───
-function toast(msg){
-  const el=document.getElementById('toast');
-  el.textContent=msg;el.classList.add('show');
-  setTimeout(()=>el.classList.remove('show'),2000);
-}
-
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2200);}
 init();
 </script>
 </body>
